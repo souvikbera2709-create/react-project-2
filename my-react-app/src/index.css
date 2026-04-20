@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+:root {
+  --bg-dark-900: #121212;
+  --bg-dark-800: #1E1E1E;
+  --bg-dark-700: #2D2D2D;
+  --bg-dark-600: #3C3C3C;
+  --bg-dark-500: #4B4B4B;
+  
+  --text-primary: #f3f4f6;   /* gray-100 */
+  --text-secondary: #e5e7eb; /* gray-200 */
+  --text-tertiary: #d1d5db;  /* gray-300 */
+  --text-muted: #9ca3af;     /* gray-400 */
+  --text-sub: #6b7280;       /* gray-500 */
+  --text-pure: #ffffff;      /* white */
+  
+  --glass-bg: rgba(30, 30, 30, 0.8);
+  --glass-border: rgba(45, 45, 45, 0.5);
+  
+  --chrome-bg: #121212;
+  --chrome-thumb: #3C3C3C;
+  --chrome-thumb-hover: #4f46e5;
+}
+
+.light {
+  --bg-dark-900: #f8fafc;
+  --bg-dark-800: #ffffff;
+  --bg-dark-700: #f1f5f9;
+  --bg-dark-600: #e2e8f0;
+  --bg-dark-500: #cbd5e1;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #1e293b;
+  --text-tertiary: #334155;
+  --text-muted: #475569;
+  --text-sub: #64748b;
+  --text-pure: #0f172a;      /* map white to dark text for contrast in light mode */
+  
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(203, 213, 225, 0.6);
+  
+  --chrome-bg: #f8fafc;
+  --chrome-thumb: #cbd5e1;
+  --chrome-thumb-hover: #9ca3af;
+}
+
+@theme {
+  --color-dark-900: var(--bg-dark-900);
+  --color-dark-800: var(--bg-dark-800);
+  --color-dark-700: var(--bg-dark-700);
+  --color-dark-600: var(--bg-dark-600);
+  --color-dark-500: var(--bg-dark-500);
+  
+  --color-gray-100: var(--text-primary);
+  --color-gray-200: var(--text-secondary);
+  --color-gray-300: var(--text-tertiary);
+  --color-gray-400: var(--text-muted);
+  --color-gray-500: var(--text-sub);
+  --color-white: var(--text-pure);
+  
+  --color-primary: #6366f1;
+  --color-primary-hover: #4f46e5;
+  --color-secondary: #8b5cf6;
+  
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #3b82f6;
+
+  --animate-pulse-fast: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-dark-900);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 0.75rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff !important; /* Always white text on primary button */
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.2);
+    font-weight: 500;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+  }
+  
+  .btn-secondary {
+    background-color: var(--bg-dark-700);
+    color: var(--text-primary) !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    border: 1px solid var(--bg-dark-600);
+  }
+  .btn-secondary:hover {
+    background-color: var(--bg-dark-600);
+  }
+
+  .btn-danger {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--color-danger) !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+  .btn-danger:hover {
+    background-color: rgba(239, 68, 68, 0.2);
+  }
+
+  .input-field {
+    background-color: var(--bg-dark-900);
+    border: 1px solid var(--bg-dark-600);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    outline: none;
+    transition: all 0.2s;
+    width: 100%;
+    color: var(--text-primary);
+  }
+  .input-field:focus {
+    box-shadow: 0 0 0 2px var(--color-primary);
+    border-color: transparent;
+  }
+  
+  .perspective-1000 { perspective: 1000px; }
+  .transform-style-3d { transform-style: preserve-3d; }
+  .backface-hidden { backface-visibility: hidden; }
+  .rotate-y-180 { transform: rotateY(180deg); }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--chrome-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--chrome-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--chrome-thumb-hover);
+}
